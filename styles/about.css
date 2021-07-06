@@ -1,0 +1,92 @@
+/************************************** ABOUT ME BLOCK *************************************/
+@import url("https://fonts.googleapis.com/css?family=Abel");
+
+.content-blocks.about {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}
+.about-cards {
+  position: absolute;
+  height: 300px;
+  width: 600px;
+  top: 210px;
+  left: calc(50% - 300px);
+  display: flex;
+}
+.card {
+  display: flex;
+  height: 280px;
+  width: 200px;
+  background-color: #17141d;
+  border-radius: 10px;
+  background: linear-gradient(#000, grey);
+  box-shadow: -0.3rem 0 0.2em #000;
+  transition: 0.4s ease-out;
+  position: relative;
+  left: 0px;
+}
+.card:not(:first-child) {
+  margin-left: -50px;
+}
+.card:hover {
+  transform: translateY(-20px);
+  transition: 0.4s ease-out;
+}
+.card:hover ~ .card {
+  position: relative;
+  left: 50px;
+  transition: 0.4s ease-out;
+}
+.card-title {
+  color: white;
+  text-align: center;
+  font-weight: 300;
+  line-height: 1;
+  font-size: 16px;
+  position: absolute;
+  left: 20px;
+  top: 15px;
+  margin: 10px 16px 0 0;
+}
+.about-services {
+  position: absolute;
+  top: 80%;
+  width: 80%;
+  padding-left: 13%;
+}
+.about-services span {
+  display: block;
+  text-align: center;
+}
+.about-services span.key-fact {
+  font-size: 14px;
+  font-weight: 500;
+  font-family: "Hind", sans-serif;
+  color: #000;
+  line-height: 1.5;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  text-align: center;
+  margin-top: 16px;
+}
+.about-services i {
+  color: #6f6f71;
+  font-weight: 700;
+  font-size: 60px;
+  display: inline-block;
+  perspective: 1000px;
+  -moz-transition: all 0.4s ease 0s;
+  -o-transition: all 0.4s ease 0s;
+  -webkit-transition: all 0.4s ease 0s;
+  transition: all 0.4s ease 0s;
+}
+.about-services .icon-wrap:hover i {
+  -moz-transform: rotateY(180deg);
+  -o-transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+  color: #000;
+}

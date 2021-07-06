@@ -1,0 +1,395 @@
+/************************************** SKILLS BLOCK *************************************/
+
+.content-blocks.skills {
+    position: absolute;
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 130vh;
+}
+.skills-container {
+    position: absolute;
+    left: 40px;
+    top: 40px;
+    transform: scale(0.8);
+}
+.circle-toggle {
+    width: 265px;
+    height: 265px;
+    position: absolute;
+    z-index: 2;
+    cursor: pointer;
+}
+.circle-toggle ul{
+    list-style: square;
+}
+.circle-toggle .default, .circle-toggle .active {
+    position: absolute;
+}
+.circle-toggle .default {
+    left: 50%;
+    top: 50%;
+    margin: -50px 0 0 -50px;
+    width: 100px;
+    height: 100px;
+    -webkit-transition: all 150ms ease-in-out 100ms;
+    -moz-transition: all 150ms ease-in-out 100ms;
+    -o-transition: all 150ms ease-in-out 100ms;
+    -ms-transition: all 150ms ease-in-out 100ms;
+    transition: all 150ms ease-in-out 100ms;
+}
+.circle-toggle .active {
+    width: 0;
+    height: 0;
+    -webkit-transition: all 250ms ease-in;
+    -moz-transition: all 250ms ease-in;
+    -o-transition: all 250ms ease-in;
+    -ms-transition: all 250ms ease-in;
+    transition: all 250ms ease-in;
+}
+.circle-toggle .active .inner-thin-layer {
+    position: absolute;
+    left: 11%;
+    top: 11%;
+    z-index: 5;
+    width: 78%;
+    height: 78%;
+    margin: 0;
+    opacity: 0;
+}
+.circle-toggle .active .inner-thick-layer {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 5;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+}
+.circle-toggle .c1-label-default, .circle-toggle .c1-label-active {
+    text-align: center;
+    color: #6d6e70;
+    font-style: italic;
+}
+.circle-toggle .c1-label-default {
+    position: absolute;
+    z-index: -1;
+    left: 50%;
+    width: 100%;
+    top: 5%;
+    height: 50px;
+    -webkit-transition: all 200ms ease-in-out 10ms;
+    -moz-transition: all 200ms ease-in-out 10ms;
+    -o-transition: all 200ms ease-in-out 10ms;
+    -ms-transition: all 200ms ease-in-out 10ms;
+    transition: all 200ms ease-in-out 10ms;
+}
+.circle-toggle .c1-label-active {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    height: 50px;
+    width: 100%;
+    text-align: center;
+    color: #6d6e70;
+    opacity: 0;
+    padding-top: 5px;
+    margin: 0;
+    -webkit-transition: all 200ms ease-in-out;
+    -moz-transition: all 200ms ease-in-out;
+    -o-transition: all 200ms ease-in-out;
+    -ms-transition: all 200ms ease-in-out;
+    transition: all 200ms ease-in-out;
+}
+.circle-toggle .blurb {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+    -webkit-transition: all 200ms ease-in-out;
+    -moz-transition: all 200ms ease-in-out;
+    -o-transition: all 200ms ease-in-out;
+    -ms-transition: all 200ms ease-in-out;
+    transition: all 200ms ease-in-out;
+}
+.circle-toggle .blurb h2 {
+    font-style: 25px;
+    line-height: 26px;
+}
+.circle-toggle .blurb .blurb-title {
+    left: -20px;
+    color: #555;
+    text-transform: uppercase;
+    margin: 0;
+}
+.circle-toggle .blurb .the-blurb {
+    margin: 0;
+    padding-top: 10px;
+    color: #6d6e70;
+    font-size: 14px;
+}
+.circle-toggle:hover .default {
+    width: 0;
+    height: 0;
+    margin: 0;
+}
+.circle-toggle:hover .active {
+    width: 265px;
+    height: 265px;
+}
+.circle-toggle:hover .active .inner-thin-layer, .circle-toggle:hover .active .inner-thick-layer {
+    opacity: 1;
+}
+.circle-toggle:hover .c1-label-active {
+    opacity: 1;
+    -webkit-transition: all 150ms ease-in 300ms;
+    -moz-transition: all 150ms ease-in 300ms;
+    -o-transition: all 150ms ease-in 300ms;
+    -ms-transition: all 150ms ease-in 300ms;
+    transition: all 150ms ease-in 300ms;
+}
+.circle-toggle:hover .c1-label-default {
+    opacity: 0;
+    top: 40% !important;
+    -webkit-transition: all 200ms ease-in;
+    -moz-transition: all 200ms ease-in;
+    -o-transition: all 200ms ease-in;
+    -ms-transition: all 200ms ease-in;
+    transition: all 200ms ease-in;
+}
+.c1-wrap {
+    width: 900px;
+    height: 800px;
+    margin: 0 auto;
+}
+.c1-wrap .c1-base {
+    width: 484px;
+    height: 528px;
+    z-index: 1;
+}
+.c1-wrap .c1-center {
+    width: 190px;
+    height: 190px;
+    z-index: 2;
+}
+.c1-wrap .c1-center .c1-inner-circle-layer {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 190px;
+    height: 190px;
+}
+.c1-wrap .c1-center .c1-center-label {
+    width: 190px;
+    height: 22px;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-size: 16px;
+    color: #6d6e70;
+    font-style: italic;
+}
+.c1-wrap .circle-toggle-1 {
+    left: 50%;
+    top: 0;
+}
+.c1-wrap .circle-toggle-1 .blurb {
+    /* top: 680px; */
+    top: 720px;
+    left: 50%;
+    width: 360px;
+}
+.c1-wrap .circle-toggle-1:hover .blurb {
+    top: 680px;
+    opacity: 1;
+    transition: all 200ms ease-in;
+    -webkit-transition: all 200ms ease-in;
+}
+.c1-wrap .circle-toggle-2 {
+    left: 10%;
+    top: 65.5%;
+}
+.c1-wrap .circle-toggle-2 .c1-label-default {
+    top: 170px;
+}
+.c1-wrap .circle-toggle-2 .blurb {
+    top: -290px;
+    left: 500px;
+    width: 300px;
+}
+.c1-wrap .circle-toggle-2:hover .blurb {
+    top: -295px;
+    left: 580px;
+    /* top: -260px;
+    left: 480px; */
+    opacity: 1;
+    transition: all 200ms ease-in;
+    -webkit-transition: all 200ms ease-in;
+}
+.c1-wrap .circle-toggle-3 {
+    right: 10%;
+    top: 65.5%;
+}
+.c1-wrap .circle-toggle-3 .c1-label-default {
+    top: 170px;
+}
+.c1-wrap .circle-toggle-3 .blurb {
+    top: -290px;
+    left: -600px;
+    width: 400px;
+    /* left: -500px;
+    width: 300px; */
+}
+.c1-wrap .circle-toggle-3:hover .blurb {
+    top: -295px;
+    left: -522px;
+    /* top: -260px;
+    left: -480px; */
+    opacity: 1;
+    transition: all 200ms ease-in;
+    -webkit-transition: all 200ms ease-in;
+}
+.absolute-center, .circle-toggle .active, .c1-wrap .c1-base, .c1-wrap .c1-center, .c1-wrap .c1-center .c1-center-label {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+.xbrowser-horizontal-center, .circle-toggle .c1-label-default, .c1-wrap .circle-toggle-1, .c1-wrap .circle-toggle-1 .blurb {
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+.xbrowser-vertical-center, .circle-toggle .c1-label-active, .c1-wrap .circle-toggle-2, .c1-wrap .circle-toggle-3 {
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+.anim-rotate {
+    -webkit-animation: rotateClockwise 5s linear infinite;
+    -moz-animation: rotateClockwise 5s linear infinite;
+    -o-animation: rotateClockwise 5s linear infinite;
+    animation: rotateClockwise 5s linear infinite;
+}
+.anim-rotate-inverse {
+    -webkit-animation: rotateCounterClockwise 10s linear infinite;
+    -moz-animation: rotateCounterClockwise 10s linear infinite;
+    -o-animation: rotateCounterClockwise 10s linear infinite;
+    animation: rotateCounterClockwise 10s linear infinite;
+}
+.anim-rotate-centered, .circle-toggle .default {
+    -webkit-animation: rotateClockwise2 5s linear infinite;
+    -moz-animation: rotateClockwise2 5s linear infinite;
+    -o-animation: rotateClockwise2 5s linear infinite;
+    animation: rotateClockwise2 5s linear infinite;
+}
+@-webkit-keyframes rotateClockwise {
+    0% {
+        -webkit-transform: rotate(0deg);
+   }
+    100% {
+        -webkit-transform: rotate(360deg);
+   }
+}
+@-moz-keyframes rotateClockwise {
+    0% {
+        -moz-transform: rotate(0deg);
+   }
+    100% {
+        -moz-transform: rotate(360deg);
+   }
+}
+@-o-keyframes rotateClockwise {
+    0% {
+        -o-transform: rotate(0deg);
+   }
+    100% {
+        -o-transform: rotate(360deg);
+   }
+}
+@keyframes rotateClockwise {
+    0% {
+        -ms-transform: rotate(0deg);
+        transform: rotate(0deg);
+   }
+    100% {
+        -ms-transform: rotate(360deg);
+        transform: rotate(360deg);
+   }
+}
+@-webkit-keyframes rotateCounterClockwise {
+    0% {
+        -webkit-transform: rotate(0deg);
+   }
+    100% {
+        -webkit-transform: rotate(-360deg);
+   }
+}
+@-moz-keyframes rotateCounterClockwise {
+    0% {
+        -moz-transform: rotate(0deg);
+   }
+    100% {
+        -moz-transform: rotate(-360deg);
+   }
+}
+@-o-keyframes rotateCounterClockwise {
+    0% {
+        -o-transform: rotate(0deg);
+   }
+    100% {
+        -o-transform: rotate(-360deg);
+   }
+}
+@keyframes rotateCounterClockwise {
+    0% {
+        -ms-transform: rotate(0deg);
+        transform: rotate(0deg);
+   }
+    100% {
+        -ms-transform: rotate(-360deg);
+        transform: rotate(-360deg);
+   }
+}
+@-webkit-keyframes rotateClockwise2 {
+    0% {
+        -webkit-transform: rotate(0deg) translate(0);
+   }
+    100% {
+        -webkit-transform: rotate(360deg) translate(0);
+   }
+}
+@-moz-keyframes rotateClockwise2 {
+    0% {
+        -moz-transform: rotate(0deg) translate(0);
+   }
+    100% {
+        -moz-transform: rotate(360deg) translate(0);
+   }
+}
+@-o-keyframes rotateClockwise2 {
+    0% {
+        -o-transform: rotate(0deg) translate(0);
+   }
+    100% {
+        -o-transform: rotate(360deg) translate(0);
+   }
+}
+@keyframes rotateClockwise2 {
+    0% {
+        -ms-transform: rotate(0deg) translate(0);
+        transform: rotate(0deg) translate(0);
+   }
+    100% {
+        -ms-transform: rotate(360deg) translate(0);
+        transform: rotate(360deg) translate(0);
+   }
+}
