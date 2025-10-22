@@ -11,10 +11,33 @@
    - Select the "repo" scope (full control of repositories)
    - Click "Generate token"
    - Copy the generated token (you won't see it again)
+4. Add the token to your repository secrets:
+   - Go to your repository Settings → Secrets and variables → Actions
+   - Click "New repository secret"
+   - Name it `PERSONAL_TOKEN` and paste your token
+   - Click "Add secret"
 
 ## Automatic Deployment with GitHub Actions
 
-Your portfolio is configured with a GitHub Actions workflow that will automatically build and deploy your site whenever you push changes to the `main` branch. This is the recommended approach as it requires no local setup beyond git.
+Your portfolio is configured with a GitHub Actions workflow that will automatically build and deploy your site whenever you push changes to the `master` branch. The workflow will:
+1. Install Node.js and dependencies
+2. Build your React application
+3. Deploy the built files to the `gh-pages` branch using `gh-pages`
+
+## Manual Deployment
+
+If you need to deploy manually:
+
+```bash
+# Install gh-pages globally (if not already installed)
+npm install -g gh-pages
+
+# Build the application
+npm run build
+
+# Deploy to GitHub Pages
+gh-pages -d build -b gh-pages
+```
 
 ## Setup Git Repository
 ```bash
@@ -56,29 +79,33 @@ If you want to manually build and test your site locally:
 Note: The `build` folder is automatically generated and should not be committed to your repository. It is included in the `.gitignore` file.
 
 ## Troubleshooting
-If you encounter Git errors (like exit code 128):
-- Make sure your repository name is exactly `Milan-rawat.github.io`
-- Ensure you're pushing to the `master` branch
-- Check that GitHub Pages is enabled in your repository settings
-- Verify that your workflow file is in `.github/workflows/deploy.yml`
-- Make sure you have granted workflows read and write permissions:
-  1. Go to your repository Settings
-  2. Click on "Actions" in the left sidebar
-  3. Under "General" settings, select "Read and write permissions"
-  4. Click "Save"
-- If using a personal access token, ensure it's properly configured in your repository secrets:
-  1. Go to your repository Settings
-  2. Click on "Secrets and variables" → "Actions"
-  3. Click "New repository secret"
-  4. Name it `PERSONAL_TOKEN` and paste your personal access token
-  5. Click "Add secret"
-- Make sure you have the correct permissions for GitHub Actions in your repository settings
-- Configure GitHub Pages to use the gh-pages branch:
-  1. Go to your repository Settings
-  2. Click on "Pages" in the left sidebar
-  3. Under "Source", select "Deploy from a branch"
-  4. Select "gh-pages" branch and "/ (root)" folder
-  5. Click "Save"
+
+### Common Issues and Solutions
+
+1. **Deployment fails with permission errors**
+   - Ensure you've created and added the `PERSONAL_TOKEN` secret to your repository
+   - The token must have `repo` scope
+   - Double-check the token name in your workflow matches exactly with the secret name
+
+2. **GitHub Pages shows README instead of the app**
+   - Make sure GitHub Pages is configured to use the `gh-pages` branch
+   - Check that the build output is in the `build` directory (default for Create React App)
+   - Verify the workflow is running successfully in the Actions tab
+
+3. **Workflow fails during build**
+   - Check the build output in the Actions tab for specific error messages
+   - Make sure all dependencies are properly listed in `package.json`
+   - Try running `npm install && npm run build` locally to catch any build issues
+
+4. **Changes not appearing on the live site**
+   - Wait a few minutes for GitHub Pages to update (can take up to 10 minutes)
+   - Clear your browser cache or try in incognito mode
+   - Check if the `gh-pages` branch was updated in your repository
+
+5. **Routing issues (404 errors on refresh)**
+   - Ensure you have the `404.html` file in your `public` directory
+   - The file should contain the SPA redirection script
+   - Make sure your React Router is using the `basename` property if needed
 
 ## Notes
 - Your site will be automatically available at https://Milan-rawat.github.io after the first deployment
