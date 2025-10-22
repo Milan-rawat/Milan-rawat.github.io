@@ -54,6 +54,51 @@
   gap: 20px;
 }
 
+.social-icons-home {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.social-icons-home a {
+  font-size: 1.5rem;
+  transition: all var(--transition-speed);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  color: var(--text-primary);
+}
+
+.social-icons-home a:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.2);
+}
+
+/* Social media brand colors */
+.social-icons-home a:nth-child(1) { /* GitHub */
+  background-color: #333;
+}
+
+.social-icons-home a:nth-child(2) { /* LinkedIn */
+  background-color: #0077B5;
+}
+
+.social-icons-home a:nth-child(3) { /* X (Twitter) */
+  background-color: #000000;
+}
+
+.social-icons-home a:nth-child(4) { /* Instagram */
+  background-color: #E4405F;
+}
+
+.social-icons-home a:nth-child(5) { /* Facebook */
+  background-color: #1877F2;
+}
+
 .btn {
   display: inline-block;
   padding: 12px 24px;

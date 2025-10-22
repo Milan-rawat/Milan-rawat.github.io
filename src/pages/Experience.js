@@ -56,11 +56,19 @@ const Experience = () => {
     },
     {
       id: 3,
+      period: "March 2022 - August 2022",
+      title: "Freelance Full Stack Developer",
+      company: "Self-employed",
+      description: "Worked on various web development projects for clients including responsive websites, web applications, and API integrations using React, Node.js, MongoDB, and Express.js.",
+      image: "/images/experience/freelance.png"
+    },
+    {
+      id: 4,
       period: "September 2022 - Present",
       title: "Full Stack Web Developer",
       company: "RTE Softwares",
       description: "Worked on full stack web application using React, Node.js, MongoDB, and Express.js.",
-      image: "/images/experience/rte.png",
+      image: "/images/experience/rte.jpg",
       website: "https://rtesoftwares.com"
     }
   ];
@@ -70,18 +78,25 @@ const Experience = () => {
       id: 1,
       title: "Node.js, Express, MongoDB & More",
       platform: "Udemy",
-      image: "/images/courses/webdev.jpg",
+      image: "/images/courses/nodejs.png",
       certificate: "https://www.udemy.com/certificate/UC-ff78151d-0d22-47ce-b6e8-41dd56364bce/"
     },
     {
       id: 2,
       title: "React - The Complete Guide",
       platform: "Udemy",
-      image: "/images/courses/webdev.jpg",
+      image: "/images/courses/reactjs.png",
       certificate: "https://www.udemy.com/certificate/UC-51b6f9c6-23c5-4aa2-bd02-58f4019cf18b/"
     },
     {
       id: 3,
+      title: "The Git & Github Bootcamp",
+      platform: "Udemy",
+      image: "/images/courses/github.png",
+      certificate: "https://www.udemy.com/certificate/UC-fb6df0be-f4bd-4ed0-9f94-20f0172652a2/"
+    },
+    {
+      id: 4,
       title: "What is Data Science",
       platform: "Coursera",
       image: "/images/courses/ds.jpg",

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { FaGithub, FaLinkedin, FaXTwitter, FaInstagram, FaFacebook } from 'react-icons/fa6';
 import '../styles/Home.css';
 
 const Home = () => {
@@ -36,6 +37,23 @@ const Home = () => {
             React, Node.js, Express.js, and MongoDB. I enjoy creating web applications and solving 
             programming challenges.
           </motion.p>
+          <motion.div className="social-icons-home">
+            <a href="https://github.com/Milan-rawat" target="_blank" rel="noopener noreferrer">
+              <FaGithub />
+            </a>
+            <a href="https://linkedin.com/in/milan-rawat" target="_blank" rel="noopener noreferrer">
+              <FaLinkedin />
+            </a>
+            <a href="https://twitter.com/immrawat" target="_blank" rel="noopener noreferrer">
+              <FaXTwitter />
+            </a>
+            <a href="https://www.instagram.com/immrawat" target="_blank" rel="noopener noreferrer">
+              <FaInstagram />
+            </a>
+            <a href="https://www.facebook.com/milanrawat086" target="_blank" rel="noopener noreferrer">
+              <FaFacebook />
+            </a>
+          </motion.div>
           <motion.div
             className="hero-buttons"
             initial={{ y: 20, opacity: 0 }}

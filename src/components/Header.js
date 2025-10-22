@@ -33,23 +33,6 @@ const Header = () => {
           </ul>
         </nav>
         
-        <div className="social-icons">
-          <a href="https://github.com/Milan-rawat" target="_blank" rel="noopener noreferrer">
-            <FaGithub />
-          </a>
-          <a href="https://linkedin.com/in/milan-rawat" target="_blank" rel="noopener noreferrer">
-            <FaLinkedin />
-          </a>
-          <a href="https://twitter.com/immrawat" target="_blank" rel="noopener noreferrer">
-            <FaXTwitter />
-          </a>
-          <a href="https://www.instagram.com/immrawat" target="_blank" rel="noopener noreferrer">
-            <FaInstagram />
-          </a>
-          <a href="https://www.facebook.com/milanrawat086" target="_blank" rel="noopener noreferrer">
-            <FaFacebook />
-          </a>
-        </div>
       </div>
     </header>
   );
