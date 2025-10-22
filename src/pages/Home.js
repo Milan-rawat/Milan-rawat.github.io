@@ -64,7 +64,7 @@ const Home = () => {
               View My Projects
             </Link>
             <a 
-              href="https://drive.google.com/file/d/1epJ-msMA2d7hFRvxkdFvFnRvM0HJSuG3/view?usp=sharing" 
+              href="https://drive.google.com/file/d/10qY18jdDKQBesViPkqduJLcFuXLyImhm/view?usp=sharing" 
               target="_blank" 
               rel="noopener noreferrer"
               className="btn btn-secondary"
