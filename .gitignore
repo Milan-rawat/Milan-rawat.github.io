@@ -2,7 +2,6 @@
 node_modules
 
 # Build outputs
-build
 dist
 
 # Logs
@@ -24,8 +23,8 @@ pnpm-debug.log*
 coverage
 
 # Production build outputs
-/build
-/dist
+build
+dist
 
 # IDE and editor files
 .vscode/*

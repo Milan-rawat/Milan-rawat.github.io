@@ -77,7 +77,14 @@ If you encounter deployment errors:
 
 2. Ensure your repository name is exactly `Milan-rawat.github.io`
 
-3. If using a personal access token, ensure it's properly configured:
+3. Configure GitHub Pages to use the correct source:
+   - Go to your repository Settings
+   - Click on "Pages" in the left sidebar
+   - Under "Source", select "Deploy from a branch"
+   - Select "gh-pages" branch and "/ (root)" folder
+   - Click "Save"
+
+4. If using a personal access token, ensure it's properly configured:
    - Go to your repository Settings
    - Click on "Secrets and variables" → "Actions"
    - Click "New repository secret"
