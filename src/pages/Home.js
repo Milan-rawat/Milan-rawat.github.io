@@ -71,6 +71,9 @@ const Home = () => {
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.7 }}
               className="pulse"
+              onError={(e) => {
+                e.target.style.display = 'none';
+              }}
             />
           </div>
         </motion.div>
