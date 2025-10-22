@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Modern portfolio website for Milan Rawat",
   "main": "index.js",
-  "homepage": "https://Milan-rawat.github.io",
+  "homepage": "https://milan-rawat.github.io",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
