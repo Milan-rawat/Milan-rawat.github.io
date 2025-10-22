@@ -77,6 +77,13 @@ If you encounter deployment errors:
 
 2. Ensure your repository name is exactly `Milan-rawat.github.io`
 
+3. If using a personal access token, ensure it's properly configured:
+   - Go to your repository Settings
+   - Click on "Secrets and variables" → "Actions"
+   - Click "New repository secret"
+   - Name it `PERSONAL_TOKEN` and paste your personal access token
+   - Click "Add secret"
+
 ## Customization
 
 To customize this portfolio for your own use:
