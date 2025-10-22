@@ -13,7 +13,7 @@ import './styles/animations.css';
 
 function App() {
   return (
-    <Router>
+    <Router basename="/Milan-rawat.github.io">
       <div className="App">
         <Header />
         <main>
