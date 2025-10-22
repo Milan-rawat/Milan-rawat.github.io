@@ -65,6 +65,18 @@ This portfolio is configured to automatically build and deploy to GitHub Pages u
    - Deploy the built files to GitHub Pages
    - Publish your site at `https://Milan-rawat.github.io`
 
+## Troubleshooting
+
+If you encounter deployment errors:
+
+1. Make sure you have granted workflows read and write permissions:
+   - Go to your repository Settings
+   - Click on "Actions" in the left sidebar
+   - Under "General" settings, select "Read and write permissions"
+   - Click "Save"
+
+2. Ensure your repository name is exactly `Milan-rawat.github.io`
+
 ## Customization
 
 To customize this portfolio for your own use:
