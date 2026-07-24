@@ -1,279 +1,192 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { FaExternalLinkAlt } from 'react-icons/fa';
+import { experienceData } from '../data/portfolioData';
+import { educationData, certificationsData } from '../data/certificationsData';
+import { useReducedMotion } from '../hooks/useReducedMotion';
 import '../styles/Experience.css';
 
+const TimelineItem = ({ item, index, reducedMotion }) => {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
+  return (
+    <motion.div
+      ref={ref}
+      className="experience-item"
+      initial={reducedMotion ? {} : { opacity: 0, y: 30, filter: 'blur(4px)' }}
+      animate={inView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+    >
+      <div className="experience-marker">
+        <div className="marker-dot"></div>
+      </div>
+      <div className="experience-card card">
+        <div className="experience-header">
+          {item.image && (
+            <div className="experience-logo">
+              <img src={item.image} alt={item.company} width="60" height="60" loading="lazy" />
+            </div>
+          )}
+          <div className="experience-meta">
+            <h3>{item.role}</h3>
+            <h4>{item.company}{item.location ? `, ${item.location}` : ''}</h4>
+            <span className="experience-period">{item.startDate} — {item.endDate}</span>
+          </div>
+          {item.website && (
+            <a
+              href={item.website}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="experience-link"
+              aria-label={`Visit ${item.company} website`}
+            >
+              <FaExternalLinkAlt />
+            </a>
+          )}
+        </div>
+
+        {item.projects && item.projects.map((project, pIndex) => (
+          <div className="experience-project" key={pIndex}>
+            <h5 className="project-name">
+              {project.name}
+              {project.website && (
+                <a
+                  href={project.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Visit ${project.name} website`}
+                >
+                  <FaExternalLinkAlt />
+                </a>
+              )}
+            </h5>
+            <ul className="project-responsibilities">
+              {project.responsibilities.map((resp, rIndex) => (
+                <li key={rIndex}>{resp}</li>
+              ))}
+            </ul>
+            {project.technologies && (
+              <div className="project-tech-tags">
+                {project.technologies.map((tech, tIndex) => (
+                  <span className="tech-tag" key={tIndex}>{tech}</span>
+                ))}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </motion.div>
+  );
+};
+
 const Experience = () => {
-  const educationData = [
-    {
-      id: 1,
-      period: "2015-2017",
-      title: "CLASS X | CICSE",
-      institution: "Gurukul International Academy",
-      image: "/images/education/gia.jpg"
-    },
-    {
-      id: 2,
-      period: "2017-2019",
-      title: "CLASS XII | CISC",
-      institution: "Gurukul International Academy",
-      image: "/images/education/gia.jpg"
-    },
-    {
-      id: 3,
-      period: "2019-2022",
-      title: "B.Sc IT | HNBGU",
-      institution: "Institute of Hospitality, Management & Sciences",
-      image: "/images/education/ihms.jpg"
-    },
-    {
-      id: 4,
-      period: "2022-2024",
-      title: "MCA | LPU",
-      institution: "Lovely Professional University",
-      image: "/images/education/lpu.jpg"
-    }
-  ];
-
-  const experienceData = [
-    {
-      id: 1,
-      period: "March 2021 - June 2020",
-      title: "Facilitator",
-      company: "Google Cloud Ready",
-      description: "Help 100+ student to make them cloud ready.",
-      image: "/images/experience/gcr.jpg",
-      certificate: "https://drive.google.com/file/d/1qQul9IyFtWBSatPtG6BBGRReqFREV623/view?usp=sharing"
-    },
-    {
-      id: 2,
-      period: "August 2021 - February 2022",
-      title: "Full Stack Web Developer",
-      company: "Applore Technologies",
-      description: "Worked on full stack web application using React, Node.js, MongoDB, and Express.js.",
-      image: "/images/experience/applore.jpg",
-      website: "https://www.apploretechnologies.com"
-    },
-    {
-      id: 3,
-      period: "March 2022 - August 2022",
-      title: "Freelance Full Stack Developer",
-      company: "Self-employed",
-      description: "Worked on various web development projects for clients including responsive websites, web applications, and API integrations using React, Node.js, MongoDB, and Express.js.",
-      image: "/images/experience/freelance.png"
-    },
-    {
-      id: 4,
-      period: "September 2022 - Present",
-      title: "Full Stack Web Developer",
-      company: "RTE Softwares",
-      description: "Worked on full stack web application using React, Node.js, MongoDB, and Express.js.",
-      image: "/images/experience/rte.jpg",
-      website: "https://rtesoftwares.com"
-    }
-  ];
-
-  const trainingData = [
-    {
-      id: 1,
-      title: "Node.js, Express, MongoDB & More",
-      platform: "Udemy",
-      image: "/images/courses/nodejs.png",
-      certificate: "https://www.udemy.com/certificate/UC-ff78151d-0d22-47ce-b6e8-41dd56364bce/"
-    },
-    {
-      id: 2,
-      title: "React - The Complete Guide",
-      platform: "Udemy",
-      image: "/images/courses/reactjs.png",
-      certificate: "https://www.udemy.com/certificate/UC-51b6f9c6-23c5-4aa2-bd02-58f4019cf18b/"
-    },
-    {
-      id: 3,
-      title: "The Git & Github Bootcamp",
-      platform: "Udemy",
-      image: "/images/courses/github.png",
-      certificate: "https://www.udemy.com/certificate/UC-fb6df0be-f4bd-4ed0-9f94-20f0172652a2/"
-    },
-    {
-      id: 4,
-      title: "What is Data Science",
-      platform: "Coursera",
-      image: "/images/courses/ds.jpg",
-      certificate: "https://coursera.org/share/35662d1795a5ee643de7052c6be7dc99"
-    }
-  ];
+  const reducedMotion = useReducedMotion();
 
   return (
     <div className="experience section">
       <div className="section-header">
         <motion.h1
-          initial={{ y: -20, opacity: 0 }}
+          initial={reducedMotion ? {} : { y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
-          My Journey
+          Experience
         </motion.h1>
         <motion.p
-          initial={{ y: -20, opacity: 0 }}
+          initial={reducedMotion ? {} : { y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          My educational background, work experience, and certifications
+          My professional journey and work experience
         </motion.p>
       </div>
 
-      <div className="experience-content">
-        {/* Education Section */}
-        <motion.div
-          className="section card"
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          whileHover={{ y: -5 }}
-        >
-          <h2>Education</h2>
-          <div className="timeline-creative">
-            {educationData.map((item, index) => {
-              const { ref, inView } = useInView({
-                triggerOnce: true,
-                threshold: 0.1,
-              });
-              
-              return (
-                <motion.div 
-                  ref={ref}
-                  className={`timeline-item-creative ${index % 2 === 0 ? 'left' : 'right'}`}
-                  key={item.id}
-                  initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50, y: 20 }}
-                  animate={inView ? { opacity: 1, x: 0, y: 0 } : { opacity: 0, x: index % 2 === 0 ? -50 : 50, y: 20 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <div className="timeline-content-creative card">
-                    <div className="timeline-marker">
-                      <div className="marker-inner"></div>
-                    </div>
-                    <div className="timeline-image-creative">
-                      <img src={item.image} alt={item.institution} />
-                    </div>
-                    <div className="timeline-text-creative">
-                      <h3>{item.title}</h3>
-                      <h4>{item.institution}</h4>
-                      <p className="period">{item.period}</p>
-                    </div>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
-        </motion.div>
-
-        {/* Experience Section */}
-        <motion.div
-          className="section card"
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          whileHover={{ y: -5 }}
-        >
-          <h2>Work Experience</h2>
-          <div className="timeline-creative">
-            {experienceData.map((item, index) => {
-              const { ref, inView } = useInView({
-                triggerOnce: true,
-                threshold: 0.1,
-              });
-              
-              return (
-                <motion.div 
-                  ref={ref}
-                  className={`timeline-item-creative ${index % 2 === 0 ? 'left' : 'right'}`}
-                  key={item.id}
-                  initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50, y: 20 }}
-                  animate={inView ? { opacity: 1, x: 0, y: 0 } : { opacity: 0, x: index % 2 === 0 ? -50 : 50, y: 20 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <div className="timeline-content-creative card">
-                    <div className="timeline-marker">
-                      <div className="marker-inner"></div>
-                    </div>
-                    <div className="timeline-image-creative">
-                      <img src={item.image} alt={item.company} />
-                    </div>
-                    <div className="timeline-text-creative">
-                      <h3>{item.title}</h3>
-                      <h4>{item.company}</h4>
-                      <p className="period">{item.period}</p>
-                      <p>{item.description}</p>
-                      <div className="timeline-links">
-                        {item.website && (
-                          <a href={item.website} target="_blank" rel="noopener noreferrer">
-                            Company Website
-                          </a>
-                        )}
-                        {item.certificate && (
-                          <a href={item.certificate} target="_blank" rel="noopener noreferrer">
-                            Certificate
-                          </a>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
-        </motion.div>
-
-        {/* Training Section */}
-        <motion.div
-          className="section card"
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.6 }}
-          whileHover={{ y: -5 }}
-        >
-          <h2>Training & Certifications</h2>
-          <div className="timeline-creative">
-            {trainingData.map((item, index) => {
-              const { ref, inView } = useInView({
-                triggerOnce: true,
-                threshold: 0.1,
-              });
-              
-              return (
-                <motion.div 
-                  ref={ref}
-                  className={`timeline-item-creative ${index % 2 === 0 ? 'left' : 'right'}`}
-                  key={item.id}
-                  initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50, y: 20 }}
-                  animate={inView ? { opacity: 1, x: 0, y: 0 } : { opacity: 0, x: index % 2 === 0 ? -50 : 50, y: 20 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <div className="timeline-content-creative card">
-                    <div className="timeline-marker">
-                      <div className="marker-inner"></div>
-                    </div>
-                    <div className="timeline-image-creative">
-                      <img src={item.image} alt={item.platform} />
-                    </div>
-                    <div className="timeline-text-creative">
-                      <h3>{item.title}</h3>
-                      <h4>{item.platform}</h4>
-                      <div className="timeline-links">
-                        <a href={item.certificate} target="_blank" rel="noopener noreferrer">
-                          View Certificate
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
-        </motion.div>
+      {/* Work Experience */}
+      <div className="experience-timeline">
+        <div className="timeline-line" aria-hidden="true"></div>
+        {experienceData.map((item, index) => (
+          <TimelineItem key={item.id} item={item} index={index} reducedMotion={reducedMotion} />
+        ))}
       </div>
+
+      {/* Education */}
+      <motion.div
+        className="education-section"
+        initial={reducedMotion ? {} : { y: 20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5, delay: 0.3 }}
+      >
+        <h2 className="subsection-title">Education</h2>
+        {educationData.map((edu) => (
+          <div className="education-card card" key={edu.id}>
+            {edu.image && (
+              <div className="education-logo">
+                <img src={edu.image} alt={edu.institution} width="60" height="60" loading="lazy" />
+              </div>
+            )}
+            <div className="education-info">
+              <h3>{edu.fullDegree}</h3>
+              <h4>{edu.institution}</h4>
+              <span className="experience-period">{edu.startDate} — {edu.endDate}</span>
+            </div>
+          </div>
+        ))}
+      </motion.div>
+
+      {/* Certifications */}
+      <motion.div
+        className="certifications-section"
+        initial={reducedMotion ? {} : { y: 20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5, delay: 0.4 }}
+      >
+        <h2 className="subsection-title">Certifications</h2>
+        <div className="certifications-grid">
+          {certificationsData.map((cert, index) => (
+            <CertificationCard key={cert.id} cert={cert} index={index} reducedMotion={reducedMotion} />
+          ))}
+        </div>
+      </motion.div>
     </div>
+  );
+};
+
+const CertificationCard = ({ cert, index, reducedMotion }) => {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
+  return (
+    <motion.div
+      ref={ref}
+      className="certification-card card"
+      initial={reducedMotion ? {} : { opacity: 0, y: 20 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.4, delay: index * 0.08 }}
+      whileHover={reducedMotion ? {} : { y: -5 }}
+    >
+      <div className="cert-header">
+        <h4>{cert.title}</h4>
+        <span className="cert-issuer">{cert.issuer}</span>
+      </div>
+      <span className="cert-date">{cert.issueDate}</span>
+      {cert.credentialUrl && (
+        <a
+          href={cert.credentialUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="cert-link"
+          aria-label={`View ${cert.title} credential`}
+        >
+          View Credential <FaExternalLinkAlt />
+        </a>
+      )}
+    </motion.div>
   );
 };
 

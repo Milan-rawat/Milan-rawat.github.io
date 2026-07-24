@@ -1,105 +1,151 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
+import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
+import { projectsData, professionalProjects } from '../data/portfolioData';
+import { useReducedMotion } from '../hooks/useReducedMotion';
 import '../styles/Projects.css';
 
+const ProjectCard = ({ project, index, reducedMotion, featured }) => {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
+  return (
+    <motion.article
+      ref={ref}
+      className={`project-card card ${featured ? 'featured' : ''}`}
+      initial={reducedMotion ? {} : { opacity: 0, y: 30 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      whileHover={reducedMotion ? {} : { y: -8 }}
+    >
+      {project.image && (
+        <div className="project-image">
+          <img
+            src={project.image}
+            alt={`${project.name} - ${project.subtitle}`}
+            loading="lazy"
+            width="400"
+            height="225"
+          />
+          <div className="project-image-overlay"></div>
+        </div>
+      )}
+      <div className="project-content">
+        <div className="project-header">
+          <h3>{project.name}</h3>
+          {project.status && <span className="project-status">{project.status}</span>}
+        </div>
+        <p className="project-subtitle">{project.subtitle}</p>
+        <p className="project-description">{project.description}</p>
+        {project.technologies && (
+          <div className="project-tech">
+            {project.technologies.slice(0, 8).map((tech, i) => (
+              <span className="tech-badge" key={i}>{tech}</span>
+            ))}
+            {project.technologies.length > 8 && (
+              <span className="tech-badge tech-more">+{project.technologies.length - 8} more</span>
+            )}
+          </div>
+        )}
+        <div className="project-links">
+          {project.githubUrl && (
+            <a
+              href={project.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="project-link-btn"
+              aria-label={`View ${project.name} source code on GitHub`}
+            >
+              <FaGithub /> GitHub
+            </a>
+          )}
+          {project.liveUrl && (
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="project-link-btn primary"
+              aria-label={`View ${project.name} live demo`}
+            >
+              <FaExternalLinkAlt /> Live Demo
+            </a>
+          )}
+        </div>
+      </div>
+    </motion.article>
+  );
+};
+
 const Projects = () => {
-  const projectsData = [
-    {
-      id: 1,
-      title: "Quotes Manager",
-      description: "A web application for managing and sharing quotes.",
-      image: "/images/projects/quotesmanager.png",
-      link: "https://react-http-e320b.firebaseapp.com/quotes"
-    },
-    {
-      id: 2,
-      title: "Shops List",
-      description: "An application for listing and managing shops.",
-      image: "/images/projects/shopslist.png",
-      link: "https://shopslistapp.herokuapp.com"
-    },
-    {
-      id: 3,
-      title: "Tenants Manager",
-      description: "A system for managing tenant information and records.",
-      image: "/images/projects/tenantsmanager.png",
-      link: "https://tenantsmanager.herokuapp.com/"
-    },
-    {
-      id: 4,
-      title: "Natours",
-      description: "A tour booking website with modern UI.",
-      image: "/images/projects/natours.png",
-      link: "https://natours2app.herokuapp.com"
-    },
-    {
-      id: 5,
-      title: "Next Meetup",
-      description: "A meetup organization and management platform.",
-      image: "/images/projects/nextmeetup.png",
-      link: "https://nextjs-meetups-orcin.vercel.app/"
-    },
-    {
-      id: 6,
-      title: "React Meals",
-      description: "A food ordering application built with React.",
-      image: "/images/projects/reactmeals.png",
-      link: "https://reactmealsapp.herokuapp.com/"
-    }
-  ];
+  const reducedMotion = useReducedMotion();
 
   return (
     <div className="projects section">
       <div className="section-header">
         <motion.h1
-          initial={{ y: -20, opacity: 0 }}
+          initial={reducedMotion ? {} : { y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
           My Projects
         </motion.h1>
         <motion.p
-          initial={{ y: -20, opacity: 0 }}
+          initial={reducedMotion ? {} : { y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          Here are some of the projects I've worked on
+          Featured personal projects and professional work
         </motion.p>
       </div>
 
-      <motion.div 
-        className="projects-grid grid"
-        initial={{ y: 20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-      >
-        {projectsData.map((project, index) => (
-          <motion.div
-            className="project-card card"
-            key={project.id}
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.1 * index + 0.3 }}
-            whileHover={{ y: -10 }}
-          >
-            <div className="project-image">
-              <img src={project.image} alt={project.title} />
-            </div>
-            <div className="project-content">
-              <h3>{project.title}</h3>
-              <p>{project.description}</p>
-              <a 
-                href={project.link} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="project-link btn btn-outline"
-              >
-                View Project
-              </a>
-            </div>
-          </motion.div>
-        ))}
-      </motion.div>
+      {/* Featured Projects */}
+      <section className="featured-projects" aria-label="Featured Projects">
+        <h2 className="subsection-title">Featured Projects</h2>
+        <div className="projects-grid featured-grid">
+          {projectsData.map((project, index) => (
+            <ProjectCard
+              key={project.id}
+              project={project}
+              index={index}
+              reducedMotion={reducedMotion}
+              featured={true}
+            />
+          ))}
+        </div>
+      </section>
+
+      {/* Professional Projects */}
+      <section className="professional-projects" aria-label="Professional Projects">
+        <h2 className="subsection-title">Professional Work</h2>
+        <p className="subsection-desc">Projects built during professional engagements</p>
+        <div className="projects-grid professional-grid">
+          {professionalProjects.map((project, index) => (
+            <motion.article
+              className="project-card card compact"
+              key={project.id}
+              initial={reducedMotion ? {} : { opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: index * 0.08 }}
+              whileHover={reducedMotion ? {} : { y: -5 }}
+            >
+              <div className="project-content">
+                <h3>{project.name}</h3>
+                <p className="project-subtitle">{project.subtitle}</p>
+                <p className="project-description">{project.description}</p>
+                <div className="project-tech">
+                  {project.technologies.map((tech, i) => (
+                    <span className="tech-badge" key={i}>{tech}</span>
+                  ))}
+                </div>
+                <span className="project-category-badge">{project.category}</span>
+              </div>
+            </motion.article>
+          ))}
+        </div>
+      </section>
     </div>
   );
 };

@@ -5,20 +5,35 @@
   top: 0;
   z-index: 100;
   border-bottom: 1px solid var(--border-color);
+  transition: padding var(--transition-speed), background-color var(--transition-speed);
+}
+
+.header-scrolled {
+  padding: 0;
+  background-color: rgba(30, 30, 30, 0.95);
+  backdrop-filter: blur(10px);
 }
 
 .header-container {
-  max-width: 1200px;
+  max-width: var(--max-width);
   margin: 0 auto;
-  padding: 20px;
+  padding: 16px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
+.header-scrolled .header-container {
+  padding: 12px 20px;
+}
+
+.logo {
+  text-decoration: none;
+}
+
 .logo h1 {
   margin: 0;
-  font-size: 1.8rem;
+  font-size: clamp(1.4rem, 2.5vw, 1.8rem);
   color: var(--text-primary);
   text-decoration: none;
   background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
@@ -31,7 +46,7 @@
 .logo h1::after {
   content: '';
   position: absolute;
-  bottom: -5px;
+  bottom: -4px;
   left: 0;
   width: 100%;
   height: 2px;
@@ -41,7 +56,8 @@
   transition: transform 0.3s ease;
 }
 
-.logo h1:hover::after {
+.logo:hover h1::after,
+.logo:focus-visible h1::after {
   transform: scaleX(1);
   transform-origin: left;
 }
@@ -51,7 +67,7 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  gap: 30px;
+  gap: clamp(15px, 2.5vw, 30px);
 }
 
 .nav-list a {
@@ -61,6 +77,7 @@
   transition: all var(--transition-speed);
   position: relative;
   padding: 5px 0;
+  font-size: 0.95rem;
 }
 
 .nav-list a::after {
@@ -74,11 +91,13 @@
   transition: width var(--transition-speed);
 }
 
-.nav-list a:hover {
+.nav-list a:hover,
+.nav-list a:focus-visible {
   color: var(--text-primary);
 }
 
-.nav-list a:hover::after {
+.nav-list a:hover::after,
+.nav-list a:focus-visible::after {
   width: 100%;
 }
 
@@ -91,53 +110,6 @@
   background-color: var(--accent-color);
 }
 
-.social-icons {
-  display: flex;
-  gap: 15px;
-}
-
-.social-icons a {
-  font-size: 1.2rem;
-  transition: all var(--transition-speed);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-}
-
-.social-icons a:hover {
-  transform: translateY(-3px);
-  filter: brightness(1.1);
-}
-
-/* Social media brand colors */
-.social-icons a:nth-child(1) { /* GitHub */
-  color: #fff;
-  background-color: #333;
-}
-
-.social-icons a:nth-child(2) { /* LinkedIn */
-  color: #fff;
-  background-color: #0077B5;
-}
-
-.social-icons a:nth-child(3) { /* X (Twitter) */
-  color: #fff;
-  background-color: #000000;
-}
-
-.social-icons a:nth-child(4) { /* Instagram */
-  color: #fff;
-  background-color: #E4405F;
-}
-
-.social-icons a:nth-child(5) { /* Facebook */
-  color: #fff;
-  background-color: #1877F2;
-}
-
 /* Hamburger menu */
 .menu-toggle {
   display: none;
@@ -145,22 +117,27 @@
   cursor: pointer;
   color: var(--text-primary);
   z-index: 1000;
+  background: none;
+  border: none;
+  padding: 8px;
+  line-height: 1;
 }
 
 @media (max-width: 768px) {
   .header-container {
-    padding: 15px;
+    padding: 12px 15px;
   }
-  
+
   .menu-toggle {
     display: block;
   }
-  
+
   .nav {
     position: fixed;
     top: 0;
     right: -100%;
     width: 70%;
+    max-width: 300px;
     height: 100vh;
     background-color: var(--card-dark);
     transition: right 0.3s ease;
@@ -168,44 +145,38 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
   }
-  
+
   .nav-open {
     right: 0;
   }
-  
+
   .nav-list {
     flex-direction: column;
     gap: 20px;
     align-items: center;
   }
-  
+
   .nav-list a {
-    font-size: 1.2rem;
-    padding: 10px 20px;
+    font-size: 1.1rem;
+    padding: 10px 24px;
     border-radius: 30px;
   }
-  
-  .nav-list a:hover {
+
+  .nav-list a:hover,
+  .nav-list a:focus-visible {
     background-color: rgba(0, 123, 255, 0.1);
   }
-  
+
   .logo h1 {
-    font-size: 1.5rem;
-  }
-  
-  .social-icons {
-    display: none;
+    font-size: 1.4rem;
   }
 }
 
 @media (max-width: 480px) {
   .nav {
     width: 100%;
-  }
-  
-  .header-container {
-    padding: 10px;
+    max-width: none;
   }
 }

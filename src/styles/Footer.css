@@ -7,7 +7,7 @@
 }
 
 .footer-container {
-  max-width: 1200px;
+  max-width: var(--max-width);
   margin: 0 auto;
   padding: 0 20px;
   text-align: center;
@@ -28,7 +28,7 @@
 .footer-links {
   display: flex;
   gap: 20px;
-  margin-top: 15px;
+  margin-top: 12px;
 }
 
 .footer-links a {
@@ -36,16 +36,19 @@
   text-decoration: none;
   transition: all var(--transition-speed);
   font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .footer-links a:hover {
   color: var(--primary-color);
-  text-decoration: underline;
 }
 
 @media (max-width: 768px) {
   .footer-links {
     flex-wrap: wrap;
-    gap: 10px;
+    justify-content: center;
+    gap: 15px;
   }
 }
