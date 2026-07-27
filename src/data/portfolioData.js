@@ -95,7 +95,7 @@ export const experienceData = [
     role: "Full Stack Developer",
     location: "Ludhiana",
     startDate: "Sep 2022",
-    endDate: "May 2026",
+    endDate: "Present",
     image: "/images/experience/rte.jpg",
     website: "https://rtesoftwares.com",
     projects: [
